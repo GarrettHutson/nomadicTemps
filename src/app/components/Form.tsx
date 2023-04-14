@@ -78,6 +78,7 @@ const MyForm: React.FC = () => {
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
+     
        
         const res = await fetch('/api/post', {
             method: 'POST',
@@ -106,7 +107,7 @@ const MyForm: React.FC = () => {
             <div className=' pb-24 flex flex-col border-2 w-2/5 h-full  justify-center border-black border-opacity-40 op'>
                 <Image
                     className='pb-36'
-                    src='/.././public/Screenshot 2023-04-10 at 6.10.16 PM.png'
+                    src='/.././public/image.png'
                     alt='something'
                     width={500}
 
