@@ -96,8 +96,8 @@ const MyForm: React.FC = () => {
                 img: formState.img,
             }),
         });
-        const newRes = await res.json()
-        console.log(newRes)
+        // const newRes = await res.json()
+        // console.log(newRes)
 
     };
 
