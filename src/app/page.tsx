@@ -7,7 +7,7 @@ export default function Home() {
   const { isLoaded, isSignedIn, user } = useUser();
 
 if(isSignedIn){
-  fetch('/api/post/user',{
+  fetch('/api/user',{
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
