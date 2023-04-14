@@ -31,7 +31,7 @@ const MyForm: React.FC = () => {
         location: '',
         start: '',
         end: '',
-        img: null,
+        img: '',
 
     };
     const [formState, setFormState] = useState<FormState>(initialFormState);
@@ -67,7 +67,7 @@ const MyForm: React.FC = () => {
         const reader = new FileReader();
         reader.onload = (event) => {
           const base64Data = event.target.result;
-          console.log(base64Data)
+       
           setFormState((prevState) => ({
             ...prevState,
             img: base64Data,
@@ -78,7 +78,7 @@ const MyForm: React.FC = () => {
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        console.log(formState.title)
+       
         const res = await fetch('/api/post', {
             method: 'POST',
             headers: {
@@ -117,7 +117,7 @@ const MyForm: React.FC = () => {
                     <p className='text-2xl m-2 overflow-auto'>{formState.description === '' ? 'This is a long description of what you need people to do for you in exchange for that chedda!' : formState.description}</p>
                     <div className='flex  m-2'>
                         {/* <img className='w-full border-black border-2 m-2 border-opacity-40' src={formState.img === '' ? null : formState.img } /> */}
-                        {formState.img !== null ? <Image
+                        {formState.img !== '' ? <Image
                             className=" m-2 "
                             // src={formState.img === "" ? '' : formState.img}
                             alt="selected image"
