@@ -79,7 +79,7 @@ const MyForm: React.FC = () => {
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         console.log(formState.title)
-        const res = await fetch('/api/post', {
+        const res = await fetch('https://nomadic-temps-hutsongarrett-gmailcom.vercel.app/api/post', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
