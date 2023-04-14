@@ -50,9 +50,9 @@ export async function POST(request: Request) {
     },
   });
 
-  await prisma.$disconnect();
+  // await prisma.$disconnect();
 
-  return new NextResponse(JSON.stringify(updatedUser), { status: 200 });
+  return NextResponse.json({updatedUser});
 }
 
 
