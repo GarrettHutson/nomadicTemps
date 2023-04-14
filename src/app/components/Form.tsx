@@ -11,7 +11,7 @@ interface FormState {
     location: string;
     start: string;
     end: string;
-    img: File | null;
+    img: string | ArrayBuffer;
 }
 
 
@@ -36,7 +36,7 @@ const MyForm: React.FC = () => {
     };
     const [formState, setFormState] = useState<FormState>(initialFormState);
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
         setFormState((prevState) => ({
             ...prevState,
@@ -44,24 +44,37 @@ const MyForm: React.FC = () => {
         }));
     };
 
+    // const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     const file = event.target.files[0];
+    //     // const newNewFile = URL.createObjectURL(file)
+    //     // setNewFile(newNewFile, () => {
+    //     //     console.log('newfile', newFile)
+    //     // })
+
+    //     const reader = new FileReader();
+    //     reader.onload = (event) => {
+    //         const base64Data = event.target.result;
+    //         console.log(base64Data)
+    //         setFormState((prevState) => ({
+    //             ...prevState,
+    //             img: base64Data,
+    //         }));
+    //     };
+    //     reader.readAsDataURL(file);
+    // };
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files[0];
-        // const newNewFile = URL.createObjectURL(file)
-        // setNewFile(newNewFile, () => {
-        //     console.log('newfile', newFile)
-        // })
-
         const reader = new FileReader();
         reader.onload = (event) => {
-            const base64Data = event.target.result;
-            console.log(base64Data)
-            setFormState((prevState) => ({
-                ...prevState,
-                img: base64Data,
-            }));
+          const base64Data = event.target.result;
+          console.log(base64Data)
+          setFormState((prevState) => ({
+            ...prevState,
+            img: base64Data,
+          }));
         };
         reader.readAsDataURL(file);
-    };
+      }
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -144,11 +157,11 @@ const MyForm: React.FC = () => {
 
                 <input className=' w-full px-4 py-2 text-lg border-2 border-black rounded  ' type="date" id="end" name="end" placeholder="End" value={formState.end} onChange={handleInputChange} />
 
-                <textarea className=' w-full px-4 py-2 text-lg border-2 border-black rounded ' type="text" id="description" name="description" placeholder="Description" value={formState.description} onChange={handleInputChange} />
+                <textarea className=' w-full px-4 py-2 text-lg border-2 border-black rounded '  id="description" name="description" placeholder="Description" value={formState.description} onChange={handleInputChange} />
 
                 <input className=' w-full px-4 py-2 text-lg border-2 border-black rounded ' type="file" accept="image/*" id="img" name="img" placeholder="Image" onChange={handleImageChange} />
 
-                <button className=' w-full px-4 py-2 text-lg border-2 border-black rounded ' type="submit" onClick={handleSubmit}>Submit</button>
+                <button className=' w-full px-4 py-2 text-lg border-2 border-black rounded ' type="submit" >Submit</button>
             </form>
 
         </div>
