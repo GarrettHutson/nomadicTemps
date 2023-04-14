@@ -5,9 +5,9 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 import Image from 'next/image';
 
-type Props = {}
 
-async function JobCard({ }: Props) {
+
+export default async function page() {
 
   const allJobs = await prisma.jobs.findMany()
   await prisma.$disconnect();
