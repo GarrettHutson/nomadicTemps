@@ -1,7 +1,7 @@
-import { prisma } from '<mongo-prisma>/app/lib/prisma';
+import { PrismaClient } from '@prisma/client'
 import { NextResponse } from 'next/server';
 import sharp from 'sharp'; // Import sharp library for image compression
-
+const prisma = new PrismaClient()
 
 export async function POST(request: Request) {
   const req = await request.json();
@@ -22,6 +22,8 @@ export async function POST(request: Request) {
 
   // Compress image
   const compressedImage = await sharp(buffer).resize({ width: 500 }).toBuffer();
+
+  await prisma.$connect()
 
   // Update the user's jobsPosted array with the compressed image
   const updatedUser = await prisma.user.update({
@@ -48,7 +50,7 @@ export async function POST(request: Request) {
     },
   });
 
-
+  await prisma.$disconnect()
 
   return NextResponse.json({updatedUser});
 }
