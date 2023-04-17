@@ -1,11 +1,12 @@
-import { prisma } from '<mongo-prisma>/app/lib/prisma';
+import { PrismaClient } from '@prisma/client'
 import { NextResponse } from 'next/server';
-
+const prisma = new PrismaClient()
 
 
 export async function POST(request: Request) {
     const req = await request.json();
     const { email, username } = req;
+    await prisma.$connect()
     const existingUser = await prisma.user.findUnique({
         where: { email: email }
     });
@@ -20,6 +21,8 @@ export async function POST(request: Request) {
             username:username
         }
     });
+    await prisma.$disconnect();
+
     return NextResponse.json(newUser);
 }
 
