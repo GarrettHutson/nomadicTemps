@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs'
 import Image from 'next/image'
@@ -86,7 +86,7 @@ const MyForm: React.FC = () => {
     };
 
     return (
-        <div className='my-auto flex w-4/5 justify-center h-[90%] '>
+        <div className='my-auto flex w-4/5 justify-center h-[90%] gap-4'>
             <div className=' pb-24 flex flex-col border-2 w-2/5 h-full  justify-center border-black border-opacity-40 op'>
                 <Image
                     className='pb-36'

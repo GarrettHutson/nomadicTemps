@@ -8,12 +8,12 @@ type Props = {}
 export default function Nav({}: Props) {
 
   const { isLoaded, isSignedIn, user } = useUser();
-  // console.log(isSignedIn)
+
   return (
     <div className="flex items-center">
    <UserButton /> 
    <div className="mx-auto mt-4 mb-8 text-center text-4xl font-light w-full h-8 ">
-    <Link href='/'>surely + work</Link>
+    <Link href='/'>nomad - temps</Link>
     </div>
     </div>
   )

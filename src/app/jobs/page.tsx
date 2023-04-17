@@ -19,7 +19,7 @@ getJobs()
 
   if(allJobs === null)return <div>Loading all Jobs....</div>
   return (
-    <>
+    <div className='flex flex-col items-center align-middle justify-center gap-4'>
       {
         allJobs.map((job, i) =>{
           return (
@@ -63,7 +63,7 @@ getJobs()
             </div>
         )})
       }
-    </>
+    </div>
 
 
 

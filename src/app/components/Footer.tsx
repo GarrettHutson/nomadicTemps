@@ -13,7 +13,7 @@ function Footer({}: Props) {
     
     <div className='flex gap-2 justify-center text-slate-400'>
         <div className=''>Terms |</div>
-        <div>Surely Work |</div>
+        <div>Nomad Temps |</div>
         <div>All Rights Reserved 2023</div>
     </div>
     </div>

@@ -17,8 +17,9 @@ export default function RootLayout({
     <html lang="en">
 
       <body >
-<SignIn></SignIn>
+
   <Nav />
+  <SignIn></SignIn>
         {children}
         <Footer />
  
