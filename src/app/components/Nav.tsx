@@ -8,7 +8,7 @@ type Props = {}
 export default function Nav({}: Props) {
 
   const { isLoaded, isSignedIn, user } = useUser();
-  console.log(isSignedIn)
+  // console.log(isSignedIn)
   return (
     <div className="flex items-center">
    <UserButton /> 

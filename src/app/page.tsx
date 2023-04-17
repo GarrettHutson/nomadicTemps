@@ -1,31 +1,31 @@
 'use client'
 import Link from 'next/link'
-import { SignedIn, SignIn, useUser, useAuth } from "@clerk/nextjs";
+import {  useUser } from "@clerk/nextjs";
 
 export default function Home() {
   // const { isLoaded, userId, sessionId, getToken } = useAuth();
-  const { isLoaded, isSignedIn, user } = useUser();
+  const {  isSignedIn, user } = useUser();
 
-if(isSignedIn){
-  fetch('/api/user',{
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      username: user.fullName,
-      email:user.emailAddresses[0].emailAddress
-   
-
+let newRes : object;
+  async function createUser(){
+   const res = await fetch('/api/user',{
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: user.fullName,
+        email:user.emailAddresses[0].emailAddress
+     
+  
+      })
     })
-  })
+     newRes = await res.json()
+    return
+  }
+if(isSignedIn){
+ createUser()
 }
-
-
-
-
-  console.log(user)
-
 
   return (
     <>

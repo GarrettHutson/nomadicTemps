@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '<mongo-prisma>/app/lib/prisma';
 import { NextResponse } from 'next/server';
-const prisma = new PrismaClient()
+
 
 
 export async function POST(request: Request) {
@@ -11,7 +11,8 @@ export async function POST(request: Request) {
     });
 
     if (existingUser) {
-        return new Response('User with email already exists', { status: 409 });
+        // return new Response('User with email already exists', { status: 409 });
+        return NextResponse.json('User with email already exists');
     }
     const newUser = await prisma.user.create({
         data: {
@@ -19,8 +20,6 @@ export async function POST(request: Request) {
             username:username
         }
     });
-    await prisma.$disconnect();
-
-    return new NextResponse(JSON.stringify(newUser), { status: 200 });
+    return NextResponse.json(newUser);
 }
 

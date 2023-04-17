@@ -1,43 +1,67 @@
-
-
-import React from 'react'
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+'use client'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
+import DeleteButton from '../components/DeleteButton';
+
+export default function Page() {
+const [allJobs, setAllJobs] = useState(null)
+
+async function getJobs(){
+ const res = await fetch('/api/jobs')
+ const newRes = await res.json();
+ setAllJobs(newRes)
+}
+
+useEffect(()=>{
+getJobs()
+},[])
 
 
-
-export default async function page() {
-
-  const allJobs = await prisma.jobs.findMany()
-  await prisma.$disconnect();
+  if(allJobs === null)return <div>Loading all Jobs....</div>
   return (
     <>
       {
-        allJobs.map((job, i) => (
-          <div key={i} className='border-black border-2 min-w-48 h-fit p-4 rounded-lg flex flex-col gap-4 '>
-            <div >{job.title}</div>
-            <div>{job.email}</div>
-            <div>{job.description}</div>
-          
-           <div className='flex w-full'>
-           <Image
-              src={`data:image/jpeg;base64,${job.img}`}
-              className='rounded-xl'
-              width={150}
-              height={150}
-              alt="Picture of the author"
-            />
-            <div className='ml-8'>
-       <div>{job.location}</div>
-       <div>{job.Budget}</div>
+        allJobs.map((job, i) =>{
+          return (
+   
+                 <div key={i} className=' pb-24 flex flex-col border-2 w-2/5 h-full  justify-center border-black border-opacity-40 op'>
+                <Image
+                    className='pb-36'
+                    src='/.././public/image.png'
+                    alt='something'
+                    width={500}
+
+                    height={300} />
+                <div>
+                    <p className='text-md m-2'>{job.email === '' ? 'https://exampleEmail.com' : job.email}</p>
+                    <h1 className='text-2xl m-2'>{job.title === '' ? 'TitleExample' : job.title}</h1>
+                    <p className='text-2xl m-2 overflow-auto'>{job.description === '' ? 'This is a long description of what you need people to do for you in exchange for that chedda!' : job.description}</p>
+                    <div className='flex  m-2'>
+                        {job.img !== '' ? 
+                    
+                        <Image
+                                src={`data:image/jpeg;base64,${job.img}`}
+                                className='rounded-xl'
+                                width={150}
+                                height={150}
+                                alt="Picture of the author"
+                              />
+                            :
+                            <div className=' w-48 h-48 rounded-lg bg-gray-400  '></div>}
+
+                        <div className='flex flex-col m-2'>
+                            <div className='bg-black text-white p-1 mx-2 my-1'>{job.profession === '' ? 'PROFESSION' : job.profession}</div>
+                            <div className='border-2 border-black p-1   mx-2 my-1'>{job.budget === '' ? '$$$' : job.budget}</div>
+                            <div className='border-2 border-black p-1 mx-2 my-1'>{job.start === '' ? 'Date Range' : job.start}</div>
+                            <div className='border-2 border-black p-1  mx-2 my-1'>{job.location === '' ? 'Location' : job.location}</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            <DeleteButton setAllJobs={setAllJobs} id={job.id}/>
             </div>
-
-           </div>
-     
-
-          </div>
-        ))
+        )})
       }
     </>
 
@@ -45,21 +69,3 @@ export default async function page() {
 
   )
 }
-
-
-
-// import JobCard from '../components/JobCard'
-
-// type Props = {}
-// function page({ }: Props) {
-
-
-//   return (
-//  <div className='h-[80%] w-full flex overflow-auto justify-center mt-48 gap-2'>
-// <JobCard />
-//  </div>
-
-//   )
-// }
-
-// export default page

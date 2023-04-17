@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs'
 import Image from 'next/image'
 interface FormState {
@@ -18,7 +19,7 @@ interface FormState {
 
 const MyForm: React.FC = () => {
     const { user } = useUser()
-    // const [newFile, setNewFile] = useState(null)
+    const router = useRouter();
 
 
     const initialFormState: FormState = {
@@ -44,24 +45,6 @@ const MyForm: React.FC = () => {
         }));
     };
 
-    // const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     const file = event.target.files[0];
-    //     // const newNewFile = URL.createObjectURL(file)
-    //     // setNewFile(newNewFile, () => {
-    //     //     console.log('newfile', newFile)
-    //     // })
-
-    //     const reader = new FileReader();
-    //     reader.onload = (event) => {
-    //         const base64Data = event.target.result;
-    //         console.log(base64Data)
-    //         setFormState((prevState) => ({
-    //             ...prevState,
-    //             img: base64Data,
-    //         }));
-    //     };
-    //     reader.readAsDataURL(file);
-    // };
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files[0];
         const reader = new FileReader();
@@ -97,8 +80,8 @@ const MyForm: React.FC = () => {
                 img: formState.img,
             }),
         });
-        // const newRes = await res.json()
-        // console.log(newRes)
+        const newRes = await res.json()
+        router.push('/jobs')
 
     };
 
