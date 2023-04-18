@@ -19,6 +19,7 @@ function deleteButton({ id, setAllJobs }: Props) {
       headers: {
         'Content-type': 'application/json'
       },
+      cache: 'no-store',
       body: JSON.stringify({ id: id })
     })
     const allJobs = await res.json()
