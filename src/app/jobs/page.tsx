@@ -8,6 +8,7 @@ const [allJobs, setAllJobs] = useState(null)
 
 async function getJobs(){
  const res = await fetch('/api/jobs', {
+  next: { revalidate: 5 },
     cache: 'no-store'
 })
  const newRes = await res.json();
