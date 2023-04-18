@@ -14,7 +14,7 @@ async function getJobs(){
 })
  const newRes = await res.json();
  console.log(newRes,'from jobs front end')
- setAllJobs(newRes)
+ setAllJobs(newRes.allJobs)
 }
 
 useEffect(()=>{
