@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import {  useUser } from "@clerk/nextjs";
-
+export const revalidate = 0
 export default function Home() {
   // const { isLoaded, userId, sessionId, getToken } = useAuth();
   const {  isSignedIn, user } = useUser();

@@ -24,7 +24,7 @@ function deleteButton({ id, setAllJobs }: Props) {
       body: JSON.stringify({ id: id })
     })
     const allJobs = await res.json()
-    console.log(allJobs,'alljobs in deletebutton')
+
     setAllJobs(allJobs.allJobs)
   }
   return (

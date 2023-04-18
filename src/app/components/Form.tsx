@@ -16,7 +16,7 @@ interface FormState {
     img: string | ArrayBuffer;
 }
 
-
+export const revalidate = 0
 
 const MyForm: React.FC = () => {
     const { user } = useUser()

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import DeleteButton from '../components/DeleteButton';
 import { useGlobalContext } from '../context/store';
-
+export const revalidate = 0
 export default function Page() {
 const {allJobs, setAllJobs} = useGlobalContext();
 
@@ -12,7 +12,7 @@ async function getJobs(){
 const urlWithTimestamp = `/api/jobs?t=${timestamp}`;
  const res = await fetch(urlWithTimestamp,{cache: 'no-store'})
  const newRes = await res.json();
- console.log(newRes,'from jobs front end')
+
  setAllJobs(newRes.allJobs)
 }
 
