@@ -13,8 +13,10 @@ async function getJobs(){
  setAllJobs(newRes.allJobs)
 }
 
+useEffect(()=>{
+  getJobs()
+},[])
 
-getJobs()
 
 
 
