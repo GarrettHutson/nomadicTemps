@@ -8,9 +8,7 @@ const [allJobs, setAllJobs] = useState(null)
 
 async function getJobs(){
  const res = await fetch('/api/jobs', {
-  headers: {
-    'Cache-Control': 'no-cache'
-  }
+    cache: 'no-store'
 })
  const newRes = await res.json();
  console.log(newRes,'from jobs front end')
