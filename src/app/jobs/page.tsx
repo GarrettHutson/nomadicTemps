@@ -7,10 +7,7 @@ export default function Page() {
 const [allJobs, setAllJobs] = useState(null)
 
 async function getJobs(){
- const res = await fetch('/api/jobs', {
-  next: { revalidate: 5 },
-    cache: 'no-store'
-})
+ const res = await fetch('/api/jobs', {cache: 'no-store'})
  const newRes = await res.json();
  console.log(newRes,'from jobs front end')
  setAllJobs(newRes.allJobs)
@@ -29,7 +26,7 @@ getJobs()
           return (
    
                  <div key={i} className=' pb-24 flex flex-col border-2 w-2/5 h-full  justify-center border-black border-opacity-40 op'>
-                <img
+                <Image
                     className='pb-36'
                     src='/.././public/image.png'
                     alt='something'
@@ -43,7 +40,7 @@ getJobs()
                     <div className='flex  m-2'>
                         {job.img !== '' ? 
                     
-                        <img
+                        <Image
                                 src={`data:image/jpeg;base64,${job.img}`}
                                 className='rounded-xl'
                                 width={150}
