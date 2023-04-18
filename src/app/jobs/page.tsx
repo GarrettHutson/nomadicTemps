@@ -8,7 +8,9 @@ export default function Page() {
 const {allJobs, setAllJobs} = useGlobalContext();
 
 async function getJobs(){
- const res = await fetch('/api/jobs',{cache: 'no-store'})
+  const timestamp = Date.now();
+const urlWithTimestamp = `/api/jobs?t=${timestamp}`;
+ const res = await fetch(urlWithTimestamp,{cache: 'no-store'})
  const newRes = await res.json();
  console.log(newRes,'from jobs front end')
  setAllJobs(newRes.allJobs)
