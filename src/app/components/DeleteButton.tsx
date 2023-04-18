@@ -14,7 +14,9 @@ type Props = {
 
 function deleteButton({ id, setAllJobs }: Props) {
   async function handleDelete() {
-    const res = await fetch('/api/delete', {
+    const timestamp = Date.now();
+    const urlWithTimestamp = `/api/delete?t=${timestamp}`;
+    const res = await fetch(urlWithTimestamp, {
       method: "DELETE",
       headers: {
         'Content-type': 'application/json'
