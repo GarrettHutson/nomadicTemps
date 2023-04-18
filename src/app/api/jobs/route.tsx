@@ -9,6 +9,6 @@ export async function GET(){
     const allJobs = await prisma.jobs.findMany()
  console.log(allJobs,'alljobs from api')
     await prisma.$disconnect();
-    return NextResponse.json(allJobs);
+    return NextResponse.json({allJobs:allJobs});
 
 }
