@@ -19,7 +19,7 @@ async function getJobs(){
 
 useEffect(()=>{
 getJobs()
-},[allJobs])
+},[])
 
 
   if(allJobs === null)return <div>Loading all Jobs....</div>
