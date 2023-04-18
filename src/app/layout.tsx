@@ -1,5 +1,6 @@
 import Nav from "./components/Nav"
 import Footer from "./components/Footer"
+import { GlobalContextProvider } from "./context/store";
 import { ClerkProvider, SignedIn, SignedOut, SignIn } from '@clerk/nextjs/app-beta';
 import './globals.css'
 export const metadata = {
@@ -20,7 +21,10 @@ export default function RootLayout({
 
   <Nav />
   <SignIn></SignIn>
-        {children}
+  <GlobalContextProvider>
+  {children}
+  </GlobalContextProvider>
+      
         <Footer />
  
  

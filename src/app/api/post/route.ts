@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { Console } from 'console';
 import { NextResponse } from 'next/server';
 import sharp from 'sharp'; // Import sharp library for image compression
 const prisma = new PrismaClient()
@@ -49,10 +50,11 @@ export async function POST(request: Request) {
       jobsPosted: true,
     },
   });
+  const allJobs = await prisma.jobs.findMany()
 
   await prisma.$disconnect()
-
-  return NextResponse.json({updatedUser});
+console.log(updatedUser,'updeteduser from post api')
+  return NextResponse.json({allJobs:allJobs});
 }
 
 

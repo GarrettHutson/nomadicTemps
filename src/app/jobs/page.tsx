@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import DeleteButton from '../components/DeleteButton';
+import { useGlobalContext } from '../context/store';
 
 export default function Page() {
-const [allJobs, setAllJobs] = useState(null)
+const {allJobs, setAllJobs} = useGlobalContext();
 
 async function getJobs(){
  const res = await fetch('/api/jobs',{cache: 'no-store'})

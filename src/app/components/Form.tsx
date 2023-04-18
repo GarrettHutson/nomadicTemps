@@ -2,6 +2,7 @@
 import {  useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs'
+import { useGlobalContext } from '../context/store';
 import Image from 'next/image'
 interface FormState {
     title: string;
@@ -20,7 +21,7 @@ interface FormState {
 const MyForm: React.FC = () => {
     const { user } = useUser()
     const router = useRouter();
-
+const {allJobs, setAllJobs} = useGlobalContext();
 
     const initialFormState: FormState = {
 
@@ -81,6 +82,7 @@ const MyForm: React.FC = () => {
             }),
         });
         const newRes = await res.json()
+        setAllJobs(newRes.allJobs)
         router.push('/jobs')
 
     };
