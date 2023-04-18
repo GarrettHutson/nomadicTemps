@@ -29,7 +29,7 @@ getJobs()
           return (
    
                  <div key={i} className=' pb-24 flex flex-col border-2 w-2/5 h-full  justify-center border-black border-opacity-40 op'>
-                <Image
+                <img
                     className='pb-36'
                     src='/.././public/image.png'
                     alt='something'
@@ -43,7 +43,7 @@ getJobs()
                     <div className='flex  m-2'>
                         {job.img !== '' ? 
                     
-                        <Image
+                        <img
                                 src={`data:image/jpeg;base64,${job.img}`}
                                 className='rounded-xl'
                                 width={150}
