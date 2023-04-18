@@ -62,9 +62,10 @@ const {allJobs, setAllJobs} = useGlobalContext();
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-     
+        const timestamp = Date.now();
+        const urlWithTimestamp = `/api/post?t=${timestamp}`;
        
-        const res = await fetch('/api/post', {
+        const res = await fetch(urlWithTimestamp, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
