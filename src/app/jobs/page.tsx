@@ -7,7 +7,11 @@ export default function Page() {
 const [allJobs, setAllJobs] = useState(null)
 
 async function getJobs(){
- const res = await fetch('/api/jobs', {cache: 'no-store'})
+ const res = await fetch('/api/jobs',{
+  headers: {
+    'Cache-Control': 'no-cache',
+  },
+})
  const newRes = await res.json();
  console.log(newRes,'from jobs front end')
  setAllJobs(newRes.allJobs)
