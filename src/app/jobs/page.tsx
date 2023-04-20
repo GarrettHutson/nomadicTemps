@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import DeleteButton from '../components/DeleteButton';
 import { useGlobalContext } from '../context/store';
-import screenshot from '../../public/image.png'
+// import screenshot from '../../public/image.png'
 
 export const revalidate = 0
 export default function Page() {
@@ -33,7 +33,7 @@ export default function Page() {
             <div key={i} className=' pb-24 flex flex-col border-2 w-2/5 h-full  justify-center border-black border-opacity-40 op'>
               <Image
                 className='pb-36'
-                src={screenshot}
+                src='/public/image.png'
                 alt='something'
                 width={500}
 

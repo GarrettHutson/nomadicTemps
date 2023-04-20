@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs'
 import { useGlobalContext } from '../context/store';
 import Image from 'next/image'
-import screenshot from '../../public/image.png'
+// import screenshot from '../../public/image.png'
 interface FormState {
     title: string;
     description: string;
@@ -96,7 +96,7 @@ const {allJobs, setAllJobs} = useGlobalContext();
             <div className=' pb-24 flex flex-col border-2 w-2/5 h-full  justify-center border-black border-opacity-40 op'>
                 <Image
                     className='pb-36'
-                    src={screenshot}
+                    src='/public/image.png'
                     alt='something'
                     width={500}
 
