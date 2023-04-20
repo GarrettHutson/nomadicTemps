@@ -20,7 +20,7 @@
       }
     ],
     "paths": {
-      "<mongo-prisma>/*": ["./src/*"]
+      "@/*": ["./*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/jobs", "src/app/middleware.ts"],
