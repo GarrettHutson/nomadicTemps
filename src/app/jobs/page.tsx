@@ -1,28 +1,36 @@
-'use client'
-import React, { useEffect, useState } from 'react'
+// 'use client'
+// import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
-import DeleteButton from '../components/DeleteButton';
-import { useGlobalContext } from '../context/store';
+// import DeleteButton from '../components/DeleteButton';
+// import { useGlobalContext } from '../context/store';
 import screenshot from '@/public/image.png'
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 export const revalidate = 0
-export default function Page() {
-  const { allJobs, setAllJobs } = useGlobalContext();
+export default async function Page() {
+  // const { allJobs, setAllJobs } = useGlobalContext();
 
-  async function getJobs() {
-    const timestamp = Date.now();
-    const urlWithTimestamp = `/api/jobs?t=${timestamp}`;
-    const res = await fetch(urlWithTimestamp, {
-       cache: 'no-store',
-       next: { revalidate: 0 }
-       })
-    const newRes = await res.json();
-    setAllJobs(newRes.allJobs)
-  }
+  // async function getJobs() {
+  //   const timestamp = Date.now();
+  //   const urlWithTimestamp = `/api/jobs?t=${timestamp}`;
+  //   const res = await fetch(urlWithTimestamp, {
+  //      cache: 'no-store',
+  //      next: { revalidate: 0 }
+  //      })
+  //   const newRes = await res.json();
+  //   setAllJobs(newRes.allJobs)
+  // }
 
-  useEffect(() => {
-    getJobs()
-  }, [])
+  // useEffect(() => {
+  //   getJobs()
+  // }, [])
+  let allJobs;
+  await prisma.$connect();
+ allJobs = await prisma.jobs.findMany()
+
+  await prisma.$disconnect();
+
   if (allJobs === null) return <div>Loading all Jobs....</div>
   return (
     <div className='flex flex-col items-center align-middle justify-center gap-4'>
@@ -65,7 +73,7 @@ export default function Page() {
 
               </div>
 
-              <DeleteButton id={job.id} />
+              {/* <DeleteButton id={job.id} /> */}
             </div>
           )
         })
