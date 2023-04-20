@@ -87,9 +87,9 @@ const {allJobs, setAllJobs} = useGlobalContext();
         });
         const newRes = await res.json()
         setAllJobs(newRes.allJobs)
-        // router.push('/jobs')
-        window.location.reload() // Reload the page
-        window.location.href = '/jobs' 
+        // window.location.reload() // Reload the page
+        router.push('/jobs')
+        // window.location.href = '/jobs' 
     };
 
     return (

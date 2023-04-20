@@ -9,7 +9,7 @@ import screenshot from '@/public/image.png'
 import { prisma } from '@/src/app/lib/prisma';
 
 export const revalidate = 1
-export default async function Page() {
+export default  function Page() {
   const { allJobs, setAllJobs } = useGlobalContext();
 
   async function getJobs() {
