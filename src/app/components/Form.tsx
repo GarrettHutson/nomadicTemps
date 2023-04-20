@@ -71,6 +71,7 @@ const {allJobs, setAllJobs} = useGlobalContext();
                 'Content-Type': 'application/json',
             },
             cache: 'no-store',
+            next: { revalidate: 0 },
             body: JSON.stringify({
                 title: formState.title,
                 description: formState.description,

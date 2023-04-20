@@ -11,6 +11,7 @@ let newRes : object;
    const res = await fetch('/api/user',{
       method: 'POST',
       cache: 'no-store',
+      next: { revalidate: 0 },
       headers: {
           'Content-Type': 'application/json',
       },

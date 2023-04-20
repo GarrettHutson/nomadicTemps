@@ -10,7 +10,10 @@ export default function Page() {
   async function getJobs() {
     const timestamp = Date.now();
     const urlWithTimestamp = `/api/jobs?t=${timestamp}`;
-    const res = await fetch(urlWithTimestamp, { cache: 'no-store' })
+    const res = await fetch(urlWithTimestamp, {
+       cache: 'no-store',
+       next: { revalidate: 0 }
+       })
     const newRes = await res.json();
     setAllJobs(newRes.allJobs)
   }
