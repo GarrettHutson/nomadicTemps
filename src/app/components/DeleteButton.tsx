@@ -3,16 +3,19 @@ import React from 'react'
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { config } from "@fortawesome/fontawesome-svg-core";
+import { useGlobalContext } from '../context/store';
 config.autoAddCss = false;
 import {
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 type Props = {
   id: string,
-  setAllJobs: any,
+
 }
 
-function deleteButton({ id, setAllJobs }: Props) {
+function DeleteButton({ id }: Props) {
+  const {allJobs, setAllJobs} = useGlobalContext();
+
   async function handleDelete() {
     const timestamp = Date.now();
     const urlWithTimestamp = `/api/delete?t=${timestamp}`;
@@ -37,4 +40,4 @@ function deleteButton({ id, setAllJobs }: Props) {
 }
 
 
-export default deleteButton
+export default DeleteButton
