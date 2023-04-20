@@ -7,7 +7,7 @@ import screenshot from '@/public/image.png'
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
-export const revalidate = 0
+export const revalidate = 1
 export default async function Page() {
   // const { allJobs, setAllJobs } = useGlobalContext();
 
