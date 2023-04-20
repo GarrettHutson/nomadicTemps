@@ -1,8 +1,10 @@
-import { PrismaClient } from '@prisma/client'
+// import { PrismaClient } from '@prisma/client'
 import { Console } from 'console';
 import { NextResponse } from 'next/server';
 import sharp from 'sharp'; // Import sharp library for image compression
-const prisma = new PrismaClient()
+// const prisma = new PrismaClient()
+import { prisma } from '@/src/app/lib/prisma';
+
 
 export async function POST(request: Request) {
   const req = await request.json();
@@ -24,7 +26,7 @@ export async function POST(request: Request) {
   // Compress image
   const compressedImage = await sharp(buffer).resize({ width: 500 }).toBuffer();
 
-  await prisma.$connect()
+  // await prisma.$connect()
 
   // Update the user's jobsPosted array with the compressed image
   const updatedUser = await prisma.user.update({
@@ -52,7 +54,7 @@ export async function POST(request: Request) {
   });
   const allJobs = await prisma.jobs.findMany()
 
-  await prisma.$disconnect()
+  // await prisma.$disconnect()
 console.log(updatedUser,'updeteduser from post api')
   return NextResponse.json({allJobs:allJobs});
 }
