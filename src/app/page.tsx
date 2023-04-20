@@ -10,6 +10,7 @@ let newRes : object;
   async function createUser(){
    const res = await fetch('/api/user',{
       method: 'POST',
+      cache: 'no-store',
       headers: {
           'Content-Type': 'application/json',
       },

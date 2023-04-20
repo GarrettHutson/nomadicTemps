@@ -12,7 +12,7 @@ type Props = {
   id: string,
 
 }
-
+export const revalidate = 0
 function DeleteButton({ id }: Props) {
   const {allJobs, setAllJobs} = useGlobalContext();
 
@@ -24,6 +24,7 @@ function DeleteButton({ id }: Props) {
       headers: {
         'Content-type': 'application/json'
       },
+      cache: 'no-store',
       body: JSON.stringify({ id: id })
     })
     const allJobs = await res.json()
