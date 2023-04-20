@@ -13,10 +13,6 @@ export default function Page() {
     const timestamp = Date.now();
     const urlWithTimestamp = `/api/jobs?t=${timestamp}`;
     const res = await fetch(urlWithTimestamp, {
-      method:"GET",
-      headers: {
-        'Content-type': 'application/json'
-      },
        cache: 'no-store',
        next: { revalidate: 0 }
        })
