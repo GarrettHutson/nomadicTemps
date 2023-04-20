@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import DeleteButton from '../components/DeleteButton';
 import { useGlobalContext } from '../context/store';
-import screenshot from '<mongo-prisma>/public/image.png'
+import screenshot from '../../public/image.png'
 
 export const revalidate = 0
 export default function Page() {

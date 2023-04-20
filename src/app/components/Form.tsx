@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs'
 import { useGlobalContext } from '../context/store';
 import Image from 'next/image'
-import screenshot from '<mongo-prisma>/public/image.png'
+import screenshot from '../../public/image.png'
 interface FormState {
     title: string;
     description: string;
