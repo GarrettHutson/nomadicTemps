@@ -25,7 +25,6 @@ function DeleteButton({ id }: Props) {
         'Content-type': 'application/json'
       },
       cache: 'no-store',
-      next: { revalidate: 0 },
       body: JSON.stringify({ id: id })
     })
     const newRes = await res.json()

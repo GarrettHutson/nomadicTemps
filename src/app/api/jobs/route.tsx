@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 // const prisma = new PrismaClient()
 import { prisma } from '@/src/app/lib/prisma';
 
-export async function GET(request:Request){
+export async function POST(request:Request){
 
      
     // await prisma.$connect();

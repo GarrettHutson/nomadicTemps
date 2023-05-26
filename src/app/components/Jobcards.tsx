@@ -30,11 +30,16 @@ function Jobcards({ }: Props) {
         const timestamp = Date.now();
         const urlWithTimestamp = `/api/jobs?t=${timestamp}`;
         const res = await fetch(urlWithTimestamp, {
+            method: "POST",
+            headers: {
+              'Content-type': 'application/json'
+            },
             cache: 'no-store',
-            next: { revalidate: 0 }
         })
         const newRes = await res.json();
+        console.log('newRes', newRes)
         setAllJobs(newRes.allJobs)
+        console.log(allJobs)
     }
  
 
