@@ -104,7 +104,7 @@ const {allJobs, setAllJobs} = useGlobalContext();
                 <div>
                     <p className='text-md m-2'>{formState.email === '' ? 'https://exampleEmail.com' : formState.email}</p>
                     <h1 className='text-2xl m-2'>{formState.title === '' ? 'TitleExample' : formState.title}</h1>
-                    <p className='text-2xl m-2 overflow-auto'>{formState.description === '' ? 'This is a long description of what you need people to do for you in exchange for that chedda!' : formState.description}</p>
+                    <p className='text-2xl m-2 overflow-auto'>{formState.description === '' ? 'This is a long description of what you need people to do for you in exchange for the chedda!' : formState.description}</p>
                     <div className='flex  m-2'>
                         {/* <img className='w-full border-black border-2 m-2 border-opacity-40' src={formState.img === '' ? null : formState.img } /> */}
                         {formState.img !== '' ? <Image
@@ -134,7 +134,7 @@ const {allJobs, setAllJobs} = useGlobalContext();
             <form className='border-2 border-black opacity-40 flex flex-col gap-3 h-full w-2/5 justify-center items-center px-6 py-4 rounded' onSubmit={handleSubmit}>
 
                 <input className=' w-full px-4 py-2 text-lg border-2 border-black rounded ' type="email" id="email" name="email" placeholder="Email" value={formState.email} onChange={handleInputChange} />
-                <label >@handle or emial</label>
+                <label >@handle or email</label>
                 <input className=' w-full px-4 py-2 text-lg border-2 border-black rounded ' type="text" id="title" name="title" placeholder="Title" value={formState.title} onChange={handleInputChange} />
 
 
