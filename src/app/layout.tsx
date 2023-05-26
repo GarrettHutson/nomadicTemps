@@ -3,6 +3,7 @@ import Footer from "./components/Footer"
 import { GlobalContextProvider } from "./context/store";
 import { ClerkProvider, SignedIn, SignedOut, SignIn } from '@clerk/nextjs/app-beta';
 import './globals.css'
+import { Analytics } from '@vercel/analytics/react';
 export const revalidate = 0
 export const metadata = {
   title: 'Create Next App',
@@ -17,13 +18,16 @@ export default function RootLayout({
   return (
     <ClerkProvider>
     <html lang="en">
-
+    <head>
+        <title>Nomadic-Temps</title>
+      </head>
       <body >
 
   <Nav />
   <SignIn></SignIn>
   <GlobalContextProvider>
   {children}
+  <Analytics />
   </GlobalContextProvider>
       
         <Footer />
@@ -38,3 +42,6 @@ export default function RootLayout({
     </ClerkProvider>
   )
 }
+
+
+
