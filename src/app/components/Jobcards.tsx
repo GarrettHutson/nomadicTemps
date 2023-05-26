@@ -27,20 +27,21 @@ function Jobcards({ }: Props) {
 
     const { allJobs, setAllJobs } = useGlobalContext();
 
-    async function getJobs() {
-        const timestamp = Date.now();
-        const urlWithTimestamp = `/api/jobs?t=${timestamp}`;
-        const res = await fetch(urlWithTimestamp, {
-            cache: 'no-store',
-            next: { revalidate: 0 }
-        })
-        const newRes = await res.json();
-        setAllJobs(newRes.allJobs)
-    }
+ 
 
     useEffect(() => {
+        async function getJobs() {
+            const timestamp = Date.now();
+            const urlWithTimestamp = `/api/jobs?t=${timestamp}`;
+            const res = await fetch(urlWithTimestamp, {
+                cache: 'no-store',
+                next: { revalidate: 0 }
+            })
+            const newRes = await res.json();
+            setAllJobs(newRes.allJobs)
+        }
         getJobs()
-    }, [])
+    })
     if (allJobs === null) return <div>Loading all Jobs....</div>
 
     return (
@@ -49,7 +50,9 @@ function Jobcards({ }: Props) {
                 allJobs.map((job, i) => {
                     return (
 
+                     
                         <div key={i} className=' pb-24 flex flex-col border-2 w-2/5 h-full  justify-center border-black border-opacity-40 op'>
+                               <h1>{job.id}</h1>
                             <Image
                                 className='pb-36'
                                 src={screenshot}

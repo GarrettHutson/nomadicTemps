@@ -4,11 +4,9 @@ import { prisma } from '@/src/app/lib/prisma';
 // const prisma = new PrismaClient()
 
 
-export async function DELETE(request:Request) {
+export async function PATCH(request:Request) {
     const req = await request.json();
-    const {
-        id,
-    } = req;
+    const { id } = req;
     // await prisma.$connect();
     const deleted = await prisma.jobs.delete({
         where: {
@@ -16,6 +14,7 @@ export async function DELETE(request:Request) {
         }
     })
     const allJobs = await prisma.jobs.findMany()
+    console.log(deleted)
     // await prisma.$disconnect();
     return NextResponse.json({allJobs:allJobs});
 }

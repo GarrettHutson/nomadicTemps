@@ -20,7 +20,7 @@ function DeleteButton({ id }: Props) {
     const timestamp = Date.now();
     const urlWithTimestamp = `/api/delete?t=${timestamp}`;
     const res = await fetch(urlWithTimestamp, {
-      method: "DELETE",
+      method: "PATCH",
       headers: {
         'Content-type': 'application/json'
       },
@@ -28,9 +28,9 @@ function DeleteButton({ id }: Props) {
       next: { revalidate: 0 },
       body: JSON.stringify({ id: id })
     })
-    const allJobs = await res.json()
+    const newRes = await res.json()
 
-    setAllJobs(allJobs.allJobs)
+    setAllJobs(newRes.allJobs)
   }
   return (
     <div className='self-center' onClick={handleDelete}>
