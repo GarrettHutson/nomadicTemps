@@ -26,20 +26,20 @@ type Props = {
 function Jobcards({ }: Props) {
 
     const { allJobs, setAllJobs } = useGlobalContext();
-
+    async function getJobs() {
+        const timestamp = Date.now();
+        const urlWithTimestamp = `/api/jobs?t=${timestamp}`;
+        const res = await fetch(urlWithTimestamp, {
+            cache: 'no-store',
+            next: { revalidate: 0 }
+        })
+        const newRes = await res.json();
+        setAllJobs(newRes.allJobs)
+    }
  
 
     useEffect(() => {
-        async function getJobs() {
-            const timestamp = Date.now();
-            const urlWithTimestamp = `/api/jobs?t=${timestamp}`;
-            const res = await fetch(urlWithTimestamp, {
-                cache: 'no-store',
-                next: { revalidate: 0 }
-            })
-            const newRes = await res.json();
-            setAllJobs(newRes.allJobs)
-        }
+
         getJobs()
     })
     if (allJobs === null) return <div>Loading all Jobs....</div>
