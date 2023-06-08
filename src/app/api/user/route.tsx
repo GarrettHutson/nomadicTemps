@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '@/src/app/lib/prisma';
 import { NextResponse } from 'next/server';
-const prisma = new PrismaClient()
+
 
 
 export async function POST(request: Request) {
@@ -12,8 +12,7 @@ export async function POST(request: Request) {
     });
 
     if (existingUser) {
-        // return new Response('User with email already exists', { status: 409 });
-        return NextResponse.json('User with email already exists');
+        return NextResponse.json(existingUser);
     }
     const newUser = await prisma.user.create({
         data: {
@@ -21,7 +20,7 @@ export async function POST(request: Request) {
             username:username
         }
     });
-    await prisma.$disconnect();
+
 
     return NextResponse.json(newUser);
 }

@@ -16,29 +16,33 @@ interface Job {
     img?: string;
 
   }
+
+  
   
 
-interface ContextProps {
+  interface ContextProps {
     allJobs: Job[] | null,
     setAllJobs: Dispatch<SetStateAction<Job[] | null>>,
+    userId: string | null,
+    setUserId: Dispatch<SetStateAction<string | null>>,
+  }
 
-}
-
-const GlobalContext = createContext<ContextProps>({
-
+  const GlobalContext = createContext<ContextProps>({
     allJobs: null,
-    setAllJobs: (): void => {} 
-})
+    setAllJobs: (): void => {},
+    userId: null,
+    setUserId: (): void => {},
+  })
 
-export const GlobalContextProvider = ({ children }) => {
+  export const GlobalContextProvider = ({ children }) => {
     const [allJobs, setAllJobs] = useState<Job[] | null>(null);
- 
-    
+    const [userId, setUserId] = useState<string | null>(null);
+  
     return (
-        <GlobalContext.Provider value={{ allJobs, setAllJobs}}>
-            {children}
-        </GlobalContext.Provider>
+      <GlobalContext.Provider value={{ allJobs, setAllJobs, userId, setUserId }}>
+        {children}
+      </GlobalContext.Provider>
     )
-};
+  };
 
 export const useGlobalContext = () => useContext(GlobalContext);

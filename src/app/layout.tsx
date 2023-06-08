@@ -27,7 +27,7 @@ export default function RootLayout({
   <SignIn></SignIn>
   <GlobalContextProvider>
   {children}
-  <Analytics />
+  {/* <Analytics /> */}
   </GlobalContextProvider>
       
         <Footer />

@@ -6,22 +6,9 @@ import Image from 'next/image';
 import screenshot from '@/public/image.png'
 import DeleteButton from '../components/DeleteButton';
 type Props = {
-    // allJobs: Job[]
 }
 
-// interface Job {
-//     id: string;
-//     title: string;
-//     description?: string;
-//     email: string;
-//     profession?: string;
-//     budget?: string;
-//     location?: string;
-//     start?: string;
-//     end?: string;
-//     img?: string;
 
-//   }
 
 function Jobcards({ }: Props) {
 
@@ -37,9 +24,9 @@ function Jobcards({ }: Props) {
             cache: 'no-store',
         })
         const newRes = await res.json();
-        console.log('newRes', newRes)
+
         setAllJobs(newRes.allJobs)
-        console.log(allJobs)
+
     }
  
 
