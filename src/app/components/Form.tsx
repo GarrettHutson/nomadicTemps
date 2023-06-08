@@ -86,9 +86,9 @@ const {allJobs, setAllJobs} = useGlobalContext();
         });
         const newRes = await res.json()
         setAllJobs(newRes.allJobs)
-        // window.location.reload() // Reload the page
+
         router.push('/jobs')
-        // window.location.href = '/jobs' 
+
     };
 
     return (
@@ -106,10 +106,8 @@ const {allJobs, setAllJobs} = useGlobalContext();
                     <h1 className='text-2xl m-2'>{formState.title === '' ? 'TitleExample' : formState.title}</h1>
                     <p className='text-2xl m-2 overflow-auto'>{formState.description === '' ? 'This is a long description of what you need people to do for you in exchange for the chedda!' : formState.description}</p>
                     <div className='flex  m-2'>
-                        {/* <img className='w-full border-black border-2 m-2 border-opacity-40' src={formState.img === '' ? null : formState.img } /> */}
                         {formState.img !== '' ? <Image
                             className=" m-2 "
-                            // src={formState.img === "" ? '' : formState.img}
                             alt="selected image"
                             src={`${formState.img}`}
                             width={200}
